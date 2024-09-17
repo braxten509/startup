@@ -9,4 +9,9 @@ git push → Pushes VS to Github
 git commit -am "commit message" → Commits to Github
 ```
 
+Shortcuts
+```
+Ctrl/Cmnd+Shift+V -> See page in markdown format
+```
+
 [Readme](README.md)
