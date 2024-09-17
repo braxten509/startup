@@ -8,3 +8,5 @@ git pull → Commits the new changes to VS
 git push → Pushes VS to Github
 git commit -am "commit message" → Commits to Github
 ```
+
+(/README.md)
