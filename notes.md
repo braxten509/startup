@@ -10,4 +10,4 @@ git commit -am "commit message" → Commits to Github
 ```
 
 [Readme]
-(/README.md)
+(startup/README.md)
