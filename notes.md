@@ -1,4 +1,4 @@
-## Contents can be used during midterm!
+## Contents can be used during midterm/final!
 
 Basic Git commands are:
 ```
