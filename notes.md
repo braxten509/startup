@@ -9,5 +9,4 @@ git push → Pushes VS to Github
 git commit -am "commit message" → Commits to Github
 ```
 
-[Readme]
-(README.md)
+[Readme](README.md)
