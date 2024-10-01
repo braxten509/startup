@@ -31,3 +31,10 @@ to the main calendar for the account owner.
     - Firebase: For storing data and syncing
     - Others: For link sharing and easy editing of the calendar
 - Websocket: As each person changes something, it is instantly changed for all other people with the link as well
+
+### HTML
+- Added home page where the users will be able to add and remove events
+- Added basic structure and layout for the application
+- Added links to the about and discord tabs
+- Added an "invite to calenshare" button that will allow users to invite people using a link
+- Added a button for the owner of the calendar to login
