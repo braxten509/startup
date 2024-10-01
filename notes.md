@@ -19,4 +19,21 @@ Operator Commands
 ./deployFiles.sh -k ~/Downloads/production.pem -h psbhrfront.click -s simon -> Deploy to server
 ```
 
+HTML Structure Tags (primary)
+```
+<head>
+<body>
+- <header>
+- <nav>
+- <main>
+- <footer>
+```
+
+HTML Simple Tags
+```
+<table>, <tr>, <th>, <td> -> respectively, table organizer, table row, table header, table data
+<button> -> allows you to create an interactable object on screen
+<a href=""> -> allows you to create a link
+```
+
 [Readme](README.md)
