@@ -25,8 +25,27 @@
                 color: transparent;
             }
 
-            .navbar-color {
+            .center-link {
+                width: 40vh;
+            }
+
+            .table-width {
+                width: 60vh;
+            }
+
+            .table-outline {
+                border-width: 4px;
+                border-radius: 6px;
+                border-style: solid;
+            }
+
+            .footer-bg {
                 background-color: #E9ECEF;
+                
+            }
+
+            .navbar-color {
+                background-color: #DEE2E6;
             }
         </style>
     </head>
@@ -41,26 +60,23 @@
                                 <a class="navbar-brand gradient-text" href="index.html">Calenshare</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="index.html">Home</a>
+                                <a class="nav-link link-primary active" href="index.html">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="login.html">Login</a>
+                                <a class="nav-link link-primary active" href="https://github.com/braxten509/startup">Github</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="https://github.com/braxten509/startup">Github</a>
+                                <a class="nav-link link-primary active" href="login.html">My Calendars</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">Share</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="about.html">About the author</a>
+                                <a class="nav-link link-primary active" href="about.html">About the author</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
         </header>
-        <main>
+        <main class="min-vh-100 mb-5">
             <p>
                 Braxten Chenay is a Software Engineering Student studying<br/>
                 at BYU! If you have any questions about the software, feel free to<br/>
@@ -69,9 +85,11 @@
             <img alt="Image of Braxten Chenay" src="braxtenchenay.jpg" width=400 height="500" />
         </main>
 
-        <footer class="fixed-bottom">
+        <footer class="sticky-bottom footer-bg">
             <hr/>
-            <p class="text-center">Copyright Braxten Chenay 2024</p>
+            <div class="d-flex justify-content-center">
+                <p class="text-center">Copyright Braxten Chenay 2024</p>
+            </div>
         </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
