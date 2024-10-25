@@ -33,12 +33,6 @@
                 width: 60vh;
             }
 
-            .table-outline {
-                border-width: 4px;
-                border-radius: 6px;
-                border-style: solid;
-            }
-
             .footer-bg {
                 background-color: #E9ECEF;
                 
@@ -47,9 +41,22 @@
             .navbar-color {
                 background-color: #DEE2E6;
             }
+
+            .table.text-secondary th,
+            .table.text-secondary td {
+                color: #6c757d !important;
+            }
+
+            /* great for making header-content-footer pages as the  grid template makes the header and footer fill as needed, and the content take up the rest of the page*/
+            body {
+                min-height: 100vh;
+                display: grid;
+                grid-template-rows: auto 1fr auto;
+            }       
+            
         </style>
     </head>
-    <body>
+    <body class="mb-0">
         <!--header (+nav), main, footer elements = structure-->
         <header>
             <nav class="navbar navbar-expand navbar-color">
@@ -96,9 +103,9 @@
             <br/>
             <!--WEBSOCKET PLACEHOLDER, for realtime demonstration of adding, removing, and 
             editing events on the page-->
-            <div class="d-flex justify-content-center mb-4">
-                <div class="rounded overflow-hidden">
-                    <table class="table table-width table-striped table-bordered table-outline text-center text-secondary">
+            <div class="d-flex justify-content-center">
+                <div class="rounded border border-3">
+                    <table class="table table-width table-striped table-bordered text-center text-secondary m-0">
                         <thead>
                             <tr>
                                 <th scope="col">Time</th>
@@ -221,10 +228,11 @@
                 </div>
             </div>
         </main>
-        <footer class="sticky-bottom footer-bg mt-4">
-            <hr/>
+
+        <footer class="sticky-bottom footer-bg pb-0 mb-0">
+            <hr class="mt-0"/>
             <div class="d-flex justify-content-center">
-                <p class="text-center">Copyright Braxten Chenay 2024</p>
+                <p class="text-center mb-3 text-secondary">Copyright Braxten Chenay 2024</p>
             </div>
         </footer>
 

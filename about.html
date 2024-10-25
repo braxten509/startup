@@ -33,12 +33,6 @@
                 width: 60vh;
             }
 
-            .table-outline {
-                border-width: 4px;
-                border-radius: 6px;
-                border-style: solid;
-            }
-
             .footer-bg {
                 background-color: #E9ECEF;
                 
@@ -47,6 +41,12 @@
             .navbar-color {
                 background-color: #DEE2E6;
             }
+
+            body {
+                min-height: 100vh;
+                display: grid;
+                grid-template-rows: auto 1fr auto;
+            }    
         </style>
     </head>
     <body>
@@ -77,17 +77,22 @@
             </nav>
         </header>
         <main class="min-vh-100 mb-5">
-            <p>
-                Braxten Chenay is a Software Engineering Student studying<br/>
-                at BYU! If you have any questions about the software, feel free to<br/>
-                reach out at braxten5@byu.edu.
-            </p>
-            <img alt="Image of Braxten Chenay" src="braxtenchenay.jpg" width=400 height="500" />
+            <div class="d-flex justify-content-center m-3">
+                <p class="text-secondary">
+                    Braxten Chenay is a Software Engineering Student studying<br/>
+                    at BYU! If you have any questions about the software, feel free to<br/>
+                    reach out at braxten5@byu.edu.
+                </p>
+            </div>
+            <div class="d-flex justify-content-center m-3">
+                <img class="rounded border border-3" alt="Image of Braxten Chenay" src="braxtenchenay.jpg" width=400 height="500" />
+            </div>
+            
         </main>
 
         <footer class="sticky-bottom footer-bg">
-            <hr/>
-            <div class="d-flex justify-content-center">
+            <hr class="mt-0"/>
+            <div class="d-flex justify-content-center text-secondary">
                 <p class="text-center">Copyright Braxten Chenay 2024</p>
             </div>
         </footer>
