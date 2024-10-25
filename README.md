@@ -38,3 +38,12 @@ to the main calendar for the account owner.
 - Added links to the about and discord tabs
 - Added an "invite to calenshare" button that will allow users to invite people using a link
 - Added a button for the owner of the calendar to login
+
+### CSS (Bootstrap)
+- Added a navigation bar and also styled it
+- Also added a gradiant styled "Calenshare" to the nav of all pages
+- Renamed the login page to "My Calendars" and styled entire page with CSS
+- Styled the footer
+- Made all pages into a grid format for header-content-footer structure
+- Styled the home page and better formatted the calendar
+- Also styled the About the Author page
