@@ -1,14 +1,13 @@
 {
   "name": "startup",
   "version": "1.0.0",
-  "description": "### Elevator Pitch Shared calendar is a simple web application that allows individuals to easily manage a calendar shared by a single person. Each person who edits the calendar does not need an account, except for the person who made it - thereby making it simple to adjust the schedule for all members who may be doing different activities during the week and want to record the times they're all available so that it is easy to plan things without having to do lots of back and  forth texting. Eventually, I would also like this to be an app on the webstore and/or ios with a widget feature to make this even simpler.",
+  "private": "true",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "vite": "^5.4.11"
   }
