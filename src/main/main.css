@@ -1,0 +1,17 @@
+.center-link {
+    width: 40vh;
+}
+
+.table {
+    width: 60vh;
+    height: 10vh;
+}
+
+.table tbody td {
+    height: auto;
+}
+
+.table.text-secondary th,
+.table.text-secondary td {
+    color: #6c757d !important;
+}

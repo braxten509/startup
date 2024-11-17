@@ -1,0 +1,26 @@
+.center-link {
+    width: 40vh;
+}
+
+.table-width {
+    width: 60vh;
+}
+
+.links {
+    width: 60vh;
+}
+
+.table thead th {
+    background-color: #F8F9FA;
+}
+
+.table.text-secondary th,
+.table.text-secondary td {
+    color: #6c757d !important;
+}
+
+.main-body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+} 

@@ -1,0 +1,29 @@
+.gradient-text {
+    background: linear-gradient(to right, #daa1f6, #be5cf0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.gradient-text:hover
+{
+    background: linear-gradient(to right, #be5cf0, #a316e9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.footer-bg {
+    background-color: #E9ECEF;
+    
+}
+
+.navbar-color {
+    background-color: #DEE2E6;
+}
+
+.main-body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}  
