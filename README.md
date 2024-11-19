@@ -9,7 +9,7 @@ forth texting. Eventually, I would also like this to be an app on the webstore a
 make this even simpler.
 
 ### Design
-![UI_Design](UI.png)
+![UI_Design](public/UI.png)
 
 ### Key Features
 - Only one account needed
@@ -47,3 +47,13 @@ to the main calendar for the account owner.
 - Made all pages into a grid format for header-content-footer structure
 - Styled the home page and better formatted the calendar
 - Also styled the About the Author page
+
+### JS (React)
+- Changed the table to a component based table that is modular
+- Made it so that the calendar changes based on the link and day entered
+- Made it so you can finally add items to the calendar that save!
+- Introduced mock login functionality
+- Created a link generator
+- Added a button on the main page that lets you chose and use a date from the calendar
+- Restructured the entire site to use React routing
+- Added logout functionality

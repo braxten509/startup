@@ -16,8 +16,8 @@ Ctrl/Cmnd+Shift+V -> See page in markdown format
 
 Operator Commands
 ```
-./deployFiles.sh -k ~/Downloads/production.pem -h psbhrfront.click -s simon -> Deploy to server
-./deployFiles.sh -k ~/Downloads/production.pem -h psbhrfront.click -s startup -> Deploy to startup subdomain
+./deployReact.sh -k ~/Documents/keys/production.pem -h psbhrfront.click -s simon -> Deploy to simon demo to server
+./deployReact.sh -k ~/Documents/keys/production.pem -h psbhrfront.click -s startup -> Deploy to startup subdomain
 ```
 
 HTML Structure Tags (primary)
