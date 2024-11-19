@@ -48,8 +48,12 @@ to the main calendar for the account owner.
 - Styled the home page and better formatted the calendar
 - Also styled the About the Author page
 
+### Vite
+- Bundled all of react and whole webpage in Vite
+
 ### JS (React)
 - Changed the table to a component based table that is modular
+- Included react hooks/components to due the app functionality
 - Made it so that the calendar changes based on the link and day entered
 - Made it so you can finally add items to the calendar that save!
 - Introduced mock login functionality
