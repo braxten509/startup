@@ -117,7 +117,7 @@ export function Login() {
                             </div>
                             <div className="btn-group">
                                 <button type="button" className="btn btn-primary" style={{marginRight: "4px", width: "200px"}} onClick={handleCreateFinishClick}>Create Account</button>
-                                <button type="button" className="btn btn-danger" style={{width: "200px"}} onClick={handleCreateCancelClick}>Cancel</button>
+                                <button type="button" className="btn btn-danger" style={{width: "195px"}} onClick={handleCreateCancelClick}>Cancel</button>
                             </div>
                         </div>
                     ) : (
@@ -132,7 +132,7 @@ export function Login() {
                                     <input type="password" className="form-control" placeholder="hello123" id="passwordInput" value={passwordTyped} onChange={handleLoginChange}/>
                                 </div>
                                 <div className="btn-group">
-                                    <button type="button" className="btn btn-primary" style={{marginRight: "4px", width: "200px"}} onClick={handleLoginClick}>Login</button>
+                                    <button type="button" className="btn btn-primary" style={{marginRight: "4px", width: "195px"}} onClick={handleLoginClick}>Login</button>
                                     <button type="button" className="btn btn-primary" style={{width: "200px"}} onClick={handleCreateClick}>Create Account</button>
                                 </div>
                             </div>
