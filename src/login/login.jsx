@@ -2,8 +2,9 @@ import React from 'react';
 import './login.css';
 import { useState } from 'react';
 
-let accounts = {};
-let passwords = [];
+
+// * put email and password entered onto the server if user does not exist * //
+
 
 export function Login() {
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
@@ -13,8 +14,29 @@ export function Login() {
     const [confirmPasswordTyped, setConfirmPasswordTyped] = useState('');
     const [generatedLink, setGeneratedLink] = useState(localStorage.getItem('generatedLink') || '');
 
-    const handleCreateFinishClick = () => {
+    async function createAccount() {
+        // demand a response given the provided data to the server
+        // 'fetch' sends a request and the response is stored in 'response'
         if (passwordTyped === confirmPasswordTyped && passwordTyped && usernameTyped && confirmPasswordTyped) {
+            const response = await fetch(`/api/auth/create`, {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ // fetch can ONLY send strings, not objects. So a string array is created.
+                    email: usernameTyped,
+                    password: confirmPasswordTyped
+                })
+            }); 
+
+            alert(response.status);
+        
+            if (!response.ok) { // In this code, response.ok is a boolean property that checks if the HTTP response status code falls within the successful range (200-299) - AI
+                alert("User already exists!");
+                return false;
+            }
+        
+            alert('Success!');
             setIsLoggedIn(true);
             setIsCreatingAccount(false);
             localStorage.setItem("isLoggedIn", "true");
@@ -22,6 +44,20 @@ export function Login() {
             alert("Passwords do not match or one entry is empty!");
         }
     }
+
+    // const handleCreateFinishClick = async () => {
+        
+    //     if (passwordTyped === confirmPasswordTyped && passwordTyped && usernameTyped && confirmPasswordTyped) {
+    //         await createAccount(usernameTyped, passwordTyped);
+    //         // if (success) {
+    //         //     setIsLoggedIn(true);
+    //         //     setIsCreatingAccount(false);
+    //         //     localStorage.setItem("isLoggedIn", "true");
+    //         // }
+    //     } else {
+    //         alert("Passwords do not match or one entry is empty!");
+    //     }
+    // }
 
     const handleCreateClick = () => {
         setIsCreatingAccount(true);
@@ -37,7 +73,7 @@ export function Login() {
             setIsLoggedIn(true);
             localStorage.setItem("isLoggedIn", "true");
         } else {
-            alert("Incorrect usernamer or password!");
+            alert("Incorrect username or password!");
         }
     }
 
@@ -116,7 +152,7 @@ export function Login() {
                                 <input type="password" className="form-control" placeholder="hello123" id="confirmPasswordInput" value={confirmPasswordTyped} onChange={handleLoginChange}/>
                             </div>
                             <div className="btn-group">
-                                <button type="button" className="btn btn-primary" style={{marginRight: "4px", width: "200px"}} onClick={handleCreateFinishClick}>Create Account</button>
+                                <button type="button" className="btn btn-primary" style={{marginRight: "4px", width: "200px"}} onClick={() => createAccount()}>Create Account</button>
                                 <button type="button" className="btn btn-danger" style={{width: "195px"}} onClick={handleCreateCancelClick}>Cancel</button>
                             </div>
                         </div>
