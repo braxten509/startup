@@ -110,7 +110,7 @@ export function Login() {
 
         for (let i = 0; i < 10; i++) {
             const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            link += alphabet[Math.floor(Math.random() * alphabet.length)];
+            link += alphabet[Math.floor(Math.random() * alphabet.length)]; // AI made the math
         }
 
         link = "https://" + link + ".psbhrfront.click/";
@@ -124,9 +124,6 @@ export function Login() {
         setGeneratedLink(newLink);
         localStorage.setItem("generatedLink", newLink);
     }
-
-    const username = "jimmethy";
-    const password = "test123";
 
     const handleLoginChange = (e) => {
         const {id, value} = e.target;

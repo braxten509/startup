@@ -4,6 +4,7 @@ const app = express();
 
 // users are saved in memory and are erased upon restart of service
 let users = {};
+let cells = {};
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
@@ -15,13 +16,28 @@ var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 
-
 // * ROUTER CUSTOM FUNCTIONS (CUSTOM MIDDLEWARE) * //
 /* 
    - req is request from the client and response is reponse to the client
    - req.body gets the 'body' JSON tag from the request sent by the client
    - thus .email is the email tag under body
 */
+
+// apiRouter.post('/auth/logCellData', async (req, res) => {
+//     const { id, name, dateAndTime, location } = req.body;
+//     cells[id] = {
+//         id,
+//         name,
+//         dateAndTime,
+//         location
+//     };
+//     console.log(`Updated/Created cell id ${id} with name \'${name}\', date \'${dateAndTime}\', and location \'${location}\'`);
+// });
+
+apiRouter.get('/auth/getCellData', async (req, res) => {
+    res.send(cells);
+});
+
 apiRouter.post('/auth/create', async (req, res) => {
     const user = users[req.body.email];
 

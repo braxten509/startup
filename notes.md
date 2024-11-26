@@ -17,8 +17,7 @@ Ctrl/Cmnd+Shift+V -> See page in markdown format
 Start Server
 ```
 in startup/service, run:
-node index.js &
-curl localhost:3000
+node index.js
 
 in startup, run:
 npm run dev
