@@ -15,13 +15,14 @@ var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 
+
 // * ROUTER CUSTOM FUNCTIONS (CUSTOM MIDDLEWARE) * //
 /* 
    - req is request from the client and response is reponse to the client
    - req.body gets the 'body' JSON tag from the request sent by the client
    - thus .email is the email tag under body
 */
-apiRouter.post(`/auth/create`, async (req, res) => {
+apiRouter.post('/auth/create', async (req, res) => {
     const user = users[req.body.email];
 
     if (user) { // if exists
@@ -88,4 +89,8 @@ apiRouter.delete('/auth/logout', (req, res) => {
     }
 
     res.status(204).end(); // use .end() when sending an empty response back to the client
+});
+
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });

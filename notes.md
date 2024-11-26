@@ -14,10 +14,20 @@ Shortcuts
 Ctrl/Cmnd+Shift+V -> See page in markdown format
 ```
 
+Start Server
+```
+in startup/service, run:
+node index.js &
+curl localhost:3000
+
+in startup, run:
+npm run dev
+```
+
 Operator Commands
 ```
-./deployReact.sh -k ~/Documents/keys/production.pem -h psbhrfront.click -s simon -> Deploy to simon demo to server
-./deployReact.sh -k ~/Documents/keys/production.pem -h psbhrfront.click -s startup -> Deploy to startup subdomain
+./deployService.sh -k ~/Documents/keys/production.pem -h psbhrfront.click -s simon -> Deploy to simon demo to server
+./deployService.sh -k ~/Documents/keys/production.pem -h psbhrfront.click -s startup -> Deploy to startup subdomain
 ```
 
 HTML Structure Tags (primary)

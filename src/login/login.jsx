@@ -28,20 +28,47 @@ export function Login() {
                     password: confirmPasswordTyped
                 })
             }); 
-
-            alert(response.status);
         
             if (!response.ok) { // In this code, response.ok is a boolean property that checks if the HTTP response status code falls within the successful range (200-299) - AI
                 alert("User already exists!");
                 return false;
             }
-        
-            alert('Success!');
+
+            if (response.ok) {
+                setIsLoggedIn(true);
+                setIsCreatingAccount(false);
+                localStorage.setItem("isLoggedIn", "true");
+              }
+
+        } else {
+            alert("Passwords do not match or one entry is empty!");
+        }
+    }
+
+    async function handleLoginClick() {
+        // demand a response given the provided data to the server
+        // 'fetch' sends a request and the response is stored in 'response'
+        const response = await fetch(`/api/auth/login`, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ // fetch can ONLY send strings, not objects. So a string array is created.
+                email: usernameTyped,
+                password: passwordTyped
+            })
+        }); 
+    
+        if (!response.ok) { // In this code, response.ok is a boolean property that checks if the HTTP response status code falls within the successful range (200-299) - AI
+            alert("Invalid credentials!");
+            return;
+        }
+
+        if (response.ok) {
             setIsLoggedIn(true);
             setIsCreatingAccount(false);
             localStorage.setItem("isLoggedIn", "true");
-        } else {
-            alert("Passwords do not match or one entry is empty!");
+            return;
         }
     }
 
@@ -66,15 +93,6 @@ export function Login() {
     const handleCreateCancelClick = () => {
         setIsCreatingAccount(false);
         handleLogoutClick();
-    }
-
-    const handleLoginClick = () => {
-        if (usernameTyped === username && passwordTyped === password) {
-            setIsLoggedIn(true);
-            localStorage.setItem("isLoggedIn", "true");
-        } else {
-            alert("Incorrect username or password!");
-        }
     }
 
     const handleLogoutClick = () => {
@@ -168,7 +186,7 @@ export function Login() {
                                     <input type="password" className="form-control" placeholder="hello123" id="passwordInput" value={passwordTyped} onChange={handleLoginChange}/>
                                 </div>
                                 <div className="btn-group">
-                                    <button type="button" className="btn btn-primary" style={{marginRight: "4px", width: "195px"}} onClick={handleLoginClick}>Login</button>
+                                    <button type="button" className="btn btn-primary" style={{marginRight: "4px", width: "195px"}} onClick={() => handleLoginClick()}>Login</button>
                                     <button type="button" className="btn btn-primary" style={{width: "200px"}} onClick={handleCreateClick}>Create Account</button>
                                 </div>
                             </div>
