@@ -28,6 +28,7 @@ Operator Commands
 ```
 ./deployService.sh -k ~/Documents/keys/production.pem -h psbhrfront.click -s simon -> Deploy to simon demo to server
 ./deployService.sh -k ~/Documents/keys/production.pem -h psbhrfront.click -s startup -> Deploy to startup subdomain
+ssh -i ~/Documents/keys/production.pem ubuntu@psbhrfront.click -> access the server after deployment (running node index.js can say if there's an error)
 ```
 
 HTML Structure Tags (primary)

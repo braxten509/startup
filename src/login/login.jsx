@@ -17,7 +17,7 @@ export function Login() {
     async function createAccount() {
         // demand a response given the provided data to the server
         // 'fetch' sends a request and the response is stored in 'response'
-        if (passwordTyped === confirmPasswordTyped && passwordTyped && usernameTyped && confirmPasswordTyped) {
+        if (passwordTyped && usernameTyped && confirmPasswordTyped && passwordTyped === confirmPasswordTyped) {
             const response = await fetch(`/api/auth/create`, {
                 method: 'post',
                 headers: {
@@ -29,12 +29,12 @@ export function Login() {
                 })
             }); 
         
-            if (!response.ok) { // In this code, response.ok is a boolean property that checks if the HTTP response status code falls within the successful range (200-299) - AI
+            if (!response?.ok) { // In this code, response.ok is a boolean property that checks if the HTTP response status code falls within the successful range (200-299) - AI
                 alert("User already exists!");
                 return false;
             }
 
-            if (response.ok) {
+            if (response?.ok) {
                 setIsLoggedIn(true);
                 setIsCreatingAccount(false);
                 localStorage.setItem("isLoggedIn", "true");
