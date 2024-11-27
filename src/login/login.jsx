@@ -130,11 +130,9 @@ export function Login() {
         switch (id) {
             case "usernameInput":
                 setUsernameTyped(value);
-                localStorage.setItem("typedUsername", value);   
                 break;
             case "passwordInput":
                 setPasswordTyped(value);
-                localStorage.setItem("typedPassword", value);   
                 break;
             case "confirmPasswordInput":
                 setConfirmPasswordTyped(value);
