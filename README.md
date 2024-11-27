@@ -51,7 +51,7 @@ to the main calendar for the account owner.
 ### Vite
 - Bundled all of react and whole webpage in Vite
 
-### JS (React)
+### React
 - Changed the table to a component based table that is modular
 - Included react hooks/components to due the app functionality
 - Made it so that the calendar changes based on the link and day entered
@@ -61,3 +61,9 @@ to the main calendar for the account owner.
 - Added a button on the main page that lets you chose and use a date from the calendar
 - Restructured the entire site to use React routing
 - Added logout functionality
+
+### JS & HTTP
+- Added login credential sending and retrieving to the server
+- Added create account feature that sends data to the server and blocks duplicates from being made
+- Added random quote getter to about page
+- Set up backend for HTTP requests and added custom requests to login and dummy ones for future use
