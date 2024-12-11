@@ -133,7 +133,6 @@ export function Login() {
           });
           
           const data = await response.json();
-          alert(JSON.stringify(data.link.link, null, 2));
 
           if (response.ok) {
             setGeneratedLink(data.link.link);
