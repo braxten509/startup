@@ -73,3 +73,4 @@ to the main calendar for the account owner.
 - Links now load when logging in
 - Passwords are encrypted when sent to server and decrypted when retrieved
 - Used tokens to authenticate in the backend
+- Made generate link replace original link and also be persistant

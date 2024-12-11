@@ -74,20 +74,6 @@ export function Login() {
         }
     }
 
-    // const handleCreateFinishClick = async () => {
-        
-    //     if (passwordTyped === confirmPasswordTyped && passwordTyped && usernameTyped && confirmPasswordTyped) {
-    //         await createAccount(usernameTyped, passwordTyped);
-    //         // if (success) {
-    //         //     setIsLoggedIn(true);
-    //         //     setIsCreatingAccount(false);
-    //         //     localStorage.setItem("isLoggedIn", "true");
-    //         // }
-    //     } else {
-    //         alert("Passwords do not match or one entry is empty!");
-    //     }
-    // }
-
     const handleCreateClick = () => {
         setIsCreatingAccount(true);
     }
@@ -110,19 +96,6 @@ export function Login() {
         localStorage.setItem("user", '');
         localStorage.setItem("generatedLink", '');
     }
-
-    // function generateRandomLink() {
-    //     let link = "";
-
-    //     for (let i = 0; i < 10; i++) {
-    //         const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    //         link += alphabet[Math.floor(Math.random() * alphabet.length)]; // AI made the math
-    //     }
-
-    //     link = "https://" + link + ".psbhrfront.click/";
-        
-    //     return link;
-    // }
 
     async function handleGetLink(email) {
         const response = await fetch(`/api/link/get?email=${encodeURIComponent(email)}`, {
@@ -152,14 +125,9 @@ export function Login() {
 
         if (response.ok) {
             setGeneratedLink(data.link);
-            localStorage.setItem("generatedLink", data.link);
         } else {
             alert('Failure :(');
         }
-        // let newLink = "";
-        // newLink = generateRandomLink();
-        // setGeneratedLink(newLink);
-        // localStorage.setItem("generatedLink", newLink);
     }
 
     const handleLoginChange = (e) => {
