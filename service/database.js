@@ -27,17 +27,25 @@ function getUserByToken(token) {
 }
 
 function getLink(email) {
-  return linkCollection.findOne({ email: email});
+  return linkCollection.findOne({ email: email });
 }
 
 async function generateLink(email) {
   const random_link = generateRandomLink();
 
-  await linkCollection.updateOne(
-    { email: email},
-    { $set: { link: random_link } },
-    { upsert: true }
-  );
+  if (linkCollection.findOne({ email: email })) {
+    await linkCollection.updateOne(
+      { email: email },
+      { $set: { link: random_link } },
+      { upsert: true }
+    );
+  } else {
+    const new_link = {
+      email: email,
+      link: random_link
+    };
+    await linkCollection.insertOne(new_link);
+  }
   return random_link;
 }
 
@@ -73,12 +81,12 @@ function generateRandomLink() {
   let link = "";
 
   for (let i = 0; i < 10; i++) {
-      const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-      link += alphabet[Math.floor(Math.random() * alphabet.length)]; // AI made the math
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    link += alphabet[Math.floor(Math.random() * alphabet.length)]; // AI made the math
   }
 
   link = "https://" + link + ".psbhrfront.click/";
-  
+
   return link;
 }
 

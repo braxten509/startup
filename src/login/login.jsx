@@ -29,17 +29,18 @@ export function Login() {
                     email: usernameTyped,
                     password: confirmPasswordTyped
                 })
-            }); 
-        
+            });
+
             if (!response?.ok) { // In this code, response.ok is a boolean property that checks if the HTTP response status code falls within the successful range (200-299) - AI
                 alert("User already exists!");
                 return false;
             }
 
             if (response?.ok) {
+                setUser(usernameTyped);
                 setIsLoggedIn(true);
                 setIsCreatingAccount(false);
-              }
+            }
 
         } else {
             alert("Passwords do not match or one entry is empty!");
@@ -58,8 +59,8 @@ export function Login() {
                 email: usernameTyped,
                 password: passwordTyped
             })
-        }); 
-    
+        });
+
         if (!response.ok) { // In this code, response.ok is a boolean property that checks if the HTTP response status code falls within the successful range (200-299) - AI
             alert("Invalid credentials!");
             return;
@@ -69,7 +70,7 @@ export function Login() {
             setIsLoggedIn(true);
             setIsCreatingAccount(false);
             setUser(usernameTyped);
-            handleGetLink(usernameTyped);
+            handleGetLink(usernameTyped); // ! ERROR
             return;
         }
     }
@@ -101,15 +102,21 @@ export function Login() {
         const response = await fetch(`/api/link/get?email=${encodeURIComponent(email)}`, {
             method: 'GET',
             headers: {
-              'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
             },
-          });
-          
-          const data = await response.json();
+        });
 
-          if (response.ok) {
-            setGeneratedLink(data.link.link);
-          }
+        const data = await response.json();
+        // alert(JSON.stringify(data, null, 2));
+
+        if (response?.ok) {
+            if (data.link === "") {
+                setGeneratedLink('');
+            } else {
+                setGeneratedLink(data.link.link);
+            }
+
+        }
     }
 
     async function handleLinkGeneration(email) {
@@ -121,17 +128,15 @@ export function Login() {
             body: JSON.stringify({ email: email })
         });
 
-        const data = await response.json();
-
         if (response.ok) {
-            setGeneratedLink(data.link);
+            handleGetLink(email);
         } else {
             alert('Failure :(');
         }
     }
 
     const handleLoginChange = (e) => {
-        const {id, value} = e.target;
+        const { id, value } = e.target;
         switch (id) {
             case "usernameInput":
                 setUsernameTyped(value);
@@ -158,36 +163,36 @@ export function Login() {
                     ) : isCreatingAccount ? (
                         <div className="container">
                             <div className="input-group center-link me-1 mb-2 mt-3">
-                                <span className="input-group-text text-secondary" style={{ width: "155px"}}>Email</span>
-                                <input type="text" className="form-control" placeholder="example@site.com" id="usernameInput" value={usernameTyped} onChange={handleLoginChange}/>
+                                <span className="input-group-text text-secondary" style={{ width: "155px" }}>Email</span>
+                                <input type="text" className="form-control" placeholder="example@site.com" id="usernameInput" value={usernameTyped} onChange={handleLoginChange} />
                             </div>
                             <div className="input-group center-link mb-2">
-                                <span className="input-group-text text-secondary" style={{ width: "155px"}}>New Password</span>
-                                <input type="password" className="form-control" placeholder="hello123" id="passwordInput" value={passwordTyped} onChange={handleLoginChange}/>
+                                <span className="input-group-text text-secondary" style={{ width: "155px" }}>New Password</span>
+                                <input type="password" className="form-control" placeholder="hello123" id="passwordInput" value={passwordTyped} onChange={handleLoginChange} />
                             </div>
                             <div className="input-group center-link mb-2">
-                                <span className="input-group-text text-secondary" style={{ width: "155px"}}>Confirm Password</span>
-                                <input type="password" className="form-control" placeholder="hello123" id="confirmPasswordInput" value={confirmPasswordTyped} onChange={handleLoginChange}/>
+                                <span className="input-group-text text-secondary" style={{ width: "155px" }}>Confirm Password</span>
+                                <input type="password" className="form-control" placeholder="hello123" id="confirmPasswordInput" value={confirmPasswordTyped} onChange={handleLoginChange} />
                             </div>
                             <div className="btn-group">
-                                <button type="button" className="btn btn-primary" style={{marginRight: "4px", width: "200px"}} onClick={() => createAccount()}>Create Account</button>
-                                <button type="button" className="btn btn-danger" style={{width: "195px"}} onClick={handleCreateCancelClick}>Cancel</button>
+                                <button type="button" className="btn btn-primary" style={{ marginRight: "4px", width: "200px" }} onClick={() => createAccount()}>Create Account</button>
+                                <button type="button" className="btn btn-danger" style={{ width: "195px" }} onClick={handleCreateCancelClick}>Cancel</button>
                             </div>
                         </div>
                     ) : (
                         <>
                             <div className="container">
                                 <div className="input-group center-link me-1 mb-2 mt-3">
-                                    <span className="input-group-text text-secondary" style={{ width: "155px"}}>Email</span>
-                                    <input type="text" className="form-control" placeholder="example@site.com" id="usernameInput" value={usernameTyped} onChange={handleLoginChange}/>
+                                    <span className="input-group-text text-secondary" style={{ width: "155px" }}>Email</span>
+                                    <input type="text" className="form-control" placeholder="example@site.com" id="usernameInput" value={usernameTyped} onChange={handleLoginChange} />
                                 </div>
                                 <div className="input-group center-link mb-2">
-                                    <span className="input-group-text text-secondary" style={{ width: "155px"}}>Password</span>
-                                    <input type="password" className="form-control" placeholder="hello123" id="passwordInput" value={passwordTyped} onChange={handleLoginChange}/>
+                                    <span className="input-group-text text-secondary" style={{ width: "155px" }}>Password</span>
+                                    <input type="password" className="form-control" placeholder="hello123" id="passwordInput" value={passwordTyped} onChange={handleLoginChange} />
                                 </div>
                                 <div className="btn-group">
-                                    <button type="button" className="btn btn-primary" style={{marginRight: "4px", width: "195px"}} onClick={() => handleLoginClick()}>Login</button>
-                                    <button type="button" className="btn btn-primary" style={{width: "200px"}} onClick={handleCreateClick}>Create Account</button>
+                                    <button type="button" className="btn btn-primary" style={{ marginRight: "4px", width: "195px" }} onClick={() => handleLoginClick()}>Login</button>
+                                    <button type="button" className="btn btn-primary" style={{ width: "200px" }} onClick={handleCreateClick}>Create Account</button>
                                 </div>
                             </div>
                         </>
@@ -197,7 +202,7 @@ export function Login() {
             <div className="d-flex justify-content-center">
                 {isLoggedIn ? (
                     <div className="rounded border border-3 mt-3">
-                    
+
                         <table className="table links m-0 text-secondary text-center">
                             <thead>
                                 <tr>

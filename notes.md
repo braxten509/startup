@@ -39,7 +39,7 @@ It looks like some people are running the "npm install mongodb" in the directory
 
 Use this alert to figure out what is being returned to fix it:
 const data = await response.json(); // if this is how you are getting your data
-alert(JSON.stringify(data.link.link, null, 2));
+alert(JSON.stringify(data, null, 2));
 ```
 
 HTML Structure Tags (primary)
