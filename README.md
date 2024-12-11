@@ -67,3 +67,9 @@ to the main calendar for the account owner.
 - Added create account feature that sends data to the server and blocks duplicates from being made
 - Added random quote getter to about page
 - Set up backend for HTTP requests and added custom requests to login and dummy ones for future use
+
+### Mongo DB
+- Added persistant storage for emails, passwords, and randomly generated links
+- Links now load when logging in
+- Passwords are encrypted when sent to server and decrypted when retrieved
+- Used tokens to authenticate in the backend

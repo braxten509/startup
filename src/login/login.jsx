@@ -7,12 +7,14 @@ import { useState } from 'react';
 
 
 export function Login() {
-    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isCreatingAccount, setIsCreatingAccount] = useState(false);
-    const [usernameTyped, setUsernameTyped] = useState(localStorage.getItem('typedUsername') || '');
-    const [passwordTyped, setPasswordTyped] = useState(localStorage.getItem('typedPassword') || '');
+    const [usernameTyped, setUsernameTyped] = useState('');
+    const [passwordTyped, setPasswordTyped] = useState('');
     const [confirmPasswordTyped, setConfirmPasswordTyped] = useState('');
-    const [generatedLink, setGeneratedLink] = useState(localStorage.getItem('generatedLink') || '');
+    const [generatedLink, setGeneratedLink] = useState('');
+
+    const [user, setUser] = useState('');
 
     async function createAccount() {
         // demand a response given the provided data to the server
@@ -37,7 +39,6 @@ export function Login() {
             if (response?.ok) {
                 setIsLoggedIn(true);
                 setIsCreatingAccount(false);
-                localStorage.setItem("isLoggedIn", "true");
               }
 
         } else {
@@ -67,7 +68,8 @@ export function Login() {
         if (response.ok) {
             setIsLoggedIn(true);
             setIsCreatingAccount(false);
-            localStorage.setItem("isLoggedIn", "true");
+            setUser(usernameTyped);
+            handleGetLink(usernameTyped);
             return;
         }
     }
@@ -100,29 +102,65 @@ export function Login() {
         setIsCreatingAccount(false);
         setUsernameTyped('');
         setPasswordTyped('');
+        setUser('');
+        setGeneratedLink('');
         localStorage.setItem("isLoggedIn", "false");
         localStorage.setItem("typedUsername", '');
         localStorage.setItem("typedPassword", '');
+        localStorage.setItem("user", '');
+        localStorage.setItem("generatedLink", '');
     }
 
-    function generateRandomLink() {
-        let link = "";
+    // function generateRandomLink() {
+    //     let link = "";
 
-        for (let i = 0; i < 10; i++) {
-            const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            link += alphabet[Math.floor(Math.random() * alphabet.length)]; // AI made the math
-        }
+    //     for (let i = 0; i < 10; i++) {
+    //         const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    //         link += alphabet[Math.floor(Math.random() * alphabet.length)]; // AI made the math
+    //     }
 
-        link = "https://" + link + ".psbhrfront.click/";
+    //     link = "https://" + link + ".psbhrfront.click/";
         
-        return link;
+    //     return link;
+    // }
+
+    async function handleGetLink(email) {
+        const response = await fetch(`/api/link/get?email=${encodeURIComponent(email)}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          
+          const data = await response.json();
+          alert(JSON.stringify(data.link.link, null, 2));
+
+          if (response.ok) {
+            setGeneratedLink(data.link.link);
+          }
     }
 
-    const handleLinkGeneration = () => {
-        let newLink = "";
-        newLink = generateRandomLink();
-        setGeneratedLink(newLink);
-        localStorage.setItem("generatedLink", newLink);
+    async function handleLinkGeneration(email) {
+        const response = await fetch('/api/link/generate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: email })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            setGeneratedLink(data.link);
+            localStorage.setItem("generatedLink", data.link);
+        } else {
+            alert('Failure :(');
+        }
+        // let newLink = "";
+        // newLink = generateRandomLink();
+        // setGeneratedLink(newLink);
+        // localStorage.setItem("generatedLink", newLink);
     }
 
     const handleLoginChange = (e) => {
@@ -146,9 +184,9 @@ export function Login() {
                 <div>
                     {isLoggedIn ? (
                         <div className='text-center'>
-                            <h2 className='h2 text-secondary mt-3'>Welcome!</h2>
+                            <h2 className='h2 text-secondary mt-3'>Welcome {user}!</h2>
                             <button type="button" className="btn btn-outline-secondary" style={{ marginLeft: "5px" }} onClick={handleLogoutClick}>Logout</button>
-                            <button type="button" className="btn btn-outline-secondary" style={{ marginLeft: "5px" }} onClick={handleLinkGeneration}>Generate Link</button>
+                            <button type="button" className="btn btn-outline-secondary" style={{ marginLeft: "5px" }} onClick={() => handleLinkGeneration(user)}>Generate Link</button>
                         </div>
                     ) : isCreatingAccount ? (
                         <div className="container">

@@ -28,6 +28,18 @@ Operator Commands
 ./deployService.sh -k ~/Documents/keys/production.pem -h psbhrfront.click -s simon -> Deploy to simon demo to server
 ./deployService.sh -k ~/Documents/keys/production.pem -h psbhrfront.click -s startup -> Deploy to startup subdomain
 ssh -i ~/Documents/keys/production.pem ubuntu@psbhrfront.click -> access the server after deployment (running node index.js can say if there's an error)
+(go to services -> startup -> node index.js to see errors)
+```
+
+Important Debugging Tips
+```
+ssh into your server. Run "pm2 stop startup". Then cd "services/startup" and run the back end "node index.js". See if there are any errors.
+
+It looks like some people are running the "npm install mongodb" in the directory above service.  If you do this, it will work on your development environment, but when you deploy, it will fail with a 502 error.  Make sure your package.json in the service directory has mongodb in it.
+
+Use this alert to figure out what is being returned to fix it:
+const data = await response.json(); // if this is how you are getting your data
+alert(JSON.stringify(data.link.link, null, 2));
 ```
 
 HTML Structure Tags (primary)
